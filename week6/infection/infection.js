@@ -33,7 +33,7 @@ function display(ball) {
     ball.y = (ball.y + max + ball.dy) % max;
     fillBox(ball, radius);
 }
-const touching = (a,b) => (a.x - b.x)**2 + (a.y - b.y)**2 < radpausius**2;
+const touching = (a,b) => (a.x - b.x)**2 + (a.y - b.y)**2 < radius**2;
 
 function nextBoard() {
     const infected = [];

@@ -11,6 +11,7 @@
 
     (10).times( n => collect.push(n) );
 
+    console.log(collect);
     ok.push(collect.length === 10);
     ok.push(collect[0] === 0);
     ok.push(collect[9] === 9);

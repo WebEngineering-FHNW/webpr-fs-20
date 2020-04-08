@@ -8,6 +8,7 @@ const Assert = () => {
         const result = (actual === expected);
         if (! result) {
            console.error(`not equal! actual was '${actual}' but expected '${expected}'`);
+           debugger
         }
         ok.push(result);
     };

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    const processEven = i => new Promise( (resolve, reject) => {
+        if (i % 2 === 0) {
+            resolve(i);
+        } else {
+            reject(i);
+        }
+      }
+    );
+
+    processEven(4)
+        .then ( it => processEven(it+1))
+        .then ( it => {console.log(it); return it} )
+        .catch( err => console.log( "Error: " + err))
+
+</script>
+
+</body>
+</html>

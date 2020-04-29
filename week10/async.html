@@ -8,19 +8,24 @@
 
 
 <script>
-    const processEven = i => new Promise( (resolve, reject) => {
-        if (i % 2 === 0) {
-            resolve(i);
-        } else {
-            reject(i);
-        }
-      }
-    );
+    // Example
 
-    processEven(4)
-        .then ( it => processEven(it+1))
-        .then ( it => {console.log(it); return it} )
-        .catch( err => console.log( "Error: " + err))
+    // fetch ('http://fhnw.ch/json/students/list')
+    //  .then(response => response.json())
+    //  .then(students => console.log(students.length))
+    //  .catch (err    => console.log(err)
+
+    // rewrite as async/await.
+
+    async function loadAndProcess() {
+        try {
+            const response = await fetch('http://fhnw.ch/json/students/list');
+            const students = await response.json();
+            console.log(students.length)
+        }
+        catch (err) { console.log(err) }
+    }
+    loadAndProcess();
 
 </script>
 

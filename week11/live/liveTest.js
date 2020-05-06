@@ -12,8 +12,14 @@ test("function composition", assert => {
     }
     const plusOneTimesTwo2 = x => timesTwo(plusOne(x));
 
+    // programming "between the lines"
+    // "the programmable semicolon"
     Function.prototype.then = function(fn) {
-        return x => fn(this(x));
+        return x => {
+            const t = this(x);
+            console.log("weiterleiten von",t)
+            return fn(t)
+        };
     };
 
     // point-free style
@@ -24,7 +30,7 @@ test("function composition", assert => {
     assert.equals(plusOneTimesTwo3(1), 4);
 
     const plusThree = plusOne
-                        .then(plusOne)
+                        .then( x => x + 1)
                         .then(plusOne);
     assert.equals(plusThree(1), 4);
 })

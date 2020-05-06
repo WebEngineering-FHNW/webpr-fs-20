@@ -36,16 +36,20 @@ test("function composition", assert => {
     assert.equals(plusThree(1), 4);
 
     const Logger = startWert => {
+        const mayWrap = x => (undefined === x ||
+                              null      === x ||
+                              undefined === x.then) ? Logger(x) : x;
         return {
            then: fn => { // flatMap, >>=, "bind"
                console.log("have been called with", startWert);
-               return Logger(fn(startWert))
+               return mayWrap(fn(startWert))
            }
         }
     }
 
     Logger(1).then(x => x+1)
              .then(x => x*2)
+             .then(x => Logger(x / 2))
              .then(result => console.log("result is",result));
 
 })

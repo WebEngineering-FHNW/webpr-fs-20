@@ -16,7 +16,7 @@ test("function composition", assert => {
         return x => fn(this(x));
     };
 
-    const plusOneTimesTwo3 = x => plusOne.then(timesTwo)(x);
+    const plusOneTimesTwo3 = plusOne.then(timesTwo);
 
     assert.equals(plusOneTimesTwo(1) , 4);
     assert.equals(plusOneTimesTwo2(1), 4);

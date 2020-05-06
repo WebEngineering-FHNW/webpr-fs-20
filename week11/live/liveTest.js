@@ -10,6 +10,15 @@ test("function composition", assert => {
         const z = timesTwo(y);
         return z;
     }
+    const plusOneTimesTwo2 = x => timesTwo(plusOne(x));
 
-    assert.equals(plusOneTimesTwo(1), 4);
+    Function.prototype.then = function(fn) {
+        return x => fn(this(x));
+    };
+
+    const plusOneTimesTwo3 = x => plusOne.then(timesTwo)(x);
+
+    assert.equals(plusOneTimesTwo(1) , 4);
+    assert.equals(plusOneTimesTwo2(1), 4);
+    assert.equals(plusOneTimesTwo3(1), 4);
 })

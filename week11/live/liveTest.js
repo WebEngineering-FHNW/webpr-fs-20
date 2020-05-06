@@ -6,7 +6,7 @@ test("function composition", assert => {
 
     // prozedural
     const plusOneTimesTwo = x => {
-        const y = plusOne(x);
+        const y = plusOne(x); // replace ; with .then
         const z = timesTwo(y);
         return z;
     }
@@ -16,9 +16,15 @@ test("function composition", assert => {
         return x => fn(this(x));
     };
 
+    // point-free style
     const plusOneTimesTwo3 = plusOne.then(timesTwo);
 
     assert.equals(plusOneTimesTwo(1) , 4);
     assert.equals(plusOneTimesTwo2(1), 4);
     assert.equals(plusOneTimesTwo3(1), 4);
+
+    const plusThree = plusOne
+                        .then(plusOne)
+                        .then(plusOne);
+    assert.equals(plusThree(1), 4);
 })

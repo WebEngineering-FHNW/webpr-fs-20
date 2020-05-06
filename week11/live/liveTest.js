@@ -22,6 +22,7 @@ test("function composition", assert => {
         };
     };
 
+
     // point-free style
     const plusOneTimesTwo3 = plusOne.then(timesTwo);
 
@@ -33,4 +34,18 @@ test("function composition", assert => {
                         .then( x => x + 1)
                         .then(plusOne);
     assert.equals(plusThree(1), 4);
+
+    const Logger = startWert => {
+        return {
+           then: fn => { // flatMap, >>=, "bind"
+               console.log("have been called with", startWert);
+               return Logger(fn(startWert))
+           }
+        }
+    }
+
+    Logger(1).then(x => x+1)
+             .then(x => x*2)
+             .then(result => console.log("result is",result));
+
 })

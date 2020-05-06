@@ -2,9 +2,11 @@
 test("function composition", assert => {
 
     // prozedural
-    const x = 1;
-    const y = x + 1;
-    const z = y * 2;
+    const plusOneTimesTwo = x => {
+        const y = x + 1;
+        const z = y * 2;
+        return z;
+    }
 
-    assert.equals(z, 4);
+    assert.equals(plusOneTimesTwo(1), 4);
 })

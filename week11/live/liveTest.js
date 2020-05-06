@@ -1,10 +1,13 @@
 
 test("function composition", assert => {
 
+    const plusOne  = x => x + 1;
+    const timesTwo = x => x * 2;
+
     // prozedural
     const plusOneTimesTwo = x => {
-        const y = x + 1;
-        const z = y * 2;
+        const y = plusOne(x);
+        const z = timesTwo(y);
         return z;
     }
 

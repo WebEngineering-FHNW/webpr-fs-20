@@ -9,9 +9,7 @@ const Scheduler = () => {
         inProcess = true;
         const task = tasks.pop();
 
-        let wasOk = false;
-        const ok = () => wasOk = true;
-        const doit = new Promise( (resolve, reject) => {
+        new Promise( (resolve, reject) => {
             task(resolve);
         }). then ( () => {
             inProcess = false;

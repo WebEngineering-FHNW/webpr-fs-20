@@ -28,7 +28,7 @@ function fillTable(container) {
 
             input.onchange = evt => {
                 Formulae[cellid] = input.value;
-                DFVs[cellid] = df(input);
+                DFVs[cellid]     = df(input);
                 refresh();
             };
             input.onclick  = evt => input.value = Formulae[cellid] ;
@@ -43,9 +43,10 @@ function fillTable(container) {
 function refresh() {
     cols.forEach( col => {
         rows.forEach( row => {
-            let cellid  = "" + col + row;
-            let input   = document.getElementById(cellid);
-            input.value = n(input);
+            let cellid   = "" + col + row;
+            let input    = document.getElementById(cellid);
+            DFVs[cellid] = df(input);
+            input.value  = n(input);
         });
     });
 }
